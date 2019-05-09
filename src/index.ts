@@ -9,7 +9,7 @@ import { startServer } from './server';
 // tslint:disable:no-console
 
 export async function printOnce(opts: Options): Promise<void> {
-  const collector = new MetricCollector(opts.metricPrefix, opts._, { redis: opts.url, prefix: opts.prefix });
+  const collector = new MetricCollector(opts.metricPrefix, opts._, { redis: { port: 6379, host: opts.url, password: opts.redisPassword}, prefix: opts.prefix });
   await collector.updateAll();
   await collector.close();
 
